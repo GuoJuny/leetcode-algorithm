@@ -1,0 +1,48 @@
+给定一个整数数组nums 和一个整数target，返回两个数字的索引，使它们相加为target。
+
+您可以假设每个输入都有一个解决方案，并且您不能两次使用相同的元素。
+
+您可以按任意顺序返回答案。
+
+ 
+
+示例1：
+
+输入： nums = [2,7,11,15], target = 9
+输出： [0,1]
+解释：因为 nums[0] + nums[1] == 9，所以我们返回 [0, 1]。
+示例2：
+
+输入： nums = [3,2,4]，目标 = 6
+输出： [1,2]
+示例3：
+
+输入： nums = [3,3]，目标 = 6
+输出： [0,1]
+ 
+
+限制条件：
+
+2 <= nums.length <= 104
+-109 <= nums[i] <= 109
+-109 <= target <= 109
+
+solution
+
+int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
+    *returnSize=2;  //设置returnSize指向的变量的值为2，表示结果数组的长度为2。
+    int* result = (int*)malloc(2 * sizeof(int));使用malloc动态分配一个包含两个整数的数组，该数组用于存储找到的两个元素的索引。
+
+   for(int i=0;i<numsSize;i++){
+       for(int j=i+1;j<numsSize;j++){
+           if(target==nums[i]+nums[j]){
+               result[0] = i;
+               result[1] = j;
+               return result;
+           }
+       }
+   }
+   free(result); 
+   return -1;
+   //如果没有找到符合条件的元素，释放动态分配的内存，然后返回-1表示未找到。
+}
